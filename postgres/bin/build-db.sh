@@ -25,4 +25,5 @@ psql -f ${CRE}/cre-db.sql
 
 # Create Tables
 echo "Creating Tables."
+psql -d ${DBNAME} -f ${TAB}/cre-s_stock.sql
 psql -d ${DBNAME} -f ${TAB}/cre-stock.sql
