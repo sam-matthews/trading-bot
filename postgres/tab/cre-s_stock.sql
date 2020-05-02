@@ -1,0 +1,20 @@
+/*
+
+    cre-s_stock.sql
+    3rd May 2020
+    Sam Matthews
+
+    Script will create a table called s_stock. This table will used as a staging table. The idea is the CSV file gets loaded into this staging table and then loaded into the atomic table with the name of the Stock.
+
+*/
+
+DROP TABLE IF EXISTS s_stock;
+CREATE TABLE IF NOT EXISTS s_stock
+(
+    s_date  TIMESTAMP,
+    s_open  NUMERIC,
+    s_low   NUMERIC,
+    s_high  NUMERIC,
+    s_close NUMERIC,
+    s_vol   INTEGER
+);
