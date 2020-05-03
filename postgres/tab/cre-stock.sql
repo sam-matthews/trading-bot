@@ -5,7 +5,7 @@
     Sam Matthews
 
     Script will create a table called stock. This table will hold all core stock daily stock data.
-    This should be the largest CORE data. 
+    This should be the largest CORE data.
 */
 
 DROP TABLE IF EXISTS stock_daily;
@@ -17,5 +17,5 @@ CREATE TABLE IF NOT EXISTS stock_daily
     s_low   NUMERIC,
     s_high  NUMERIC,
     s_close NUMERIC,
-    s_vol   INTEGER
+    s_vol   BIGINT
 );

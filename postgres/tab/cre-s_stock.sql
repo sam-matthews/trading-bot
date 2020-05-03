@@ -16,5 +16,5 @@ CREATE TABLE IF NOT EXISTS s_stock
     s_low   NUMERIC,
     s_high  NUMERIC,
     s_close NUMERIC,
-    s_vol   INTEGER
+    s_vol   BIGINT
 );
