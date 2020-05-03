@@ -5,6 +5,10 @@
 # Sam Matthews
 
 # Parameters
+APP_HOME="${HOME}/dev/trading-bot"
+POST_HOME="${APP_HOME}/postgres"
+POST_SQL="${POST_HOME}/sql"
+
 DAT_HOME="${HOME}/dev/alphavantage/dat"
 WEEKLY_DAT="${DAT_HOME}/weekly"
 DB_NAME="trading-bot"
@@ -31,11 +35,13 @@ do
 
   # Load stock data into Atomic data with Stock Name.
   psql -d ${DB_NAME} -t -c \
-  "INSERT INTO stock_daily SELECT '${T_STOCK}', s_date, s_open, s_high, s_low, s_close, s_vol FROM s_stock"
+  "INSERT INTO stock_weekly SELECT '${T_STOCK}', s_date, s_open, s_high, s_low, s_close, s_vol FROM s_stock"
 
 done
 
-exit 0
+# Generate list of stocks where they had a green candle in the last week.
+echo "Generating list of Stocks which have Green Candles"
+psql -d ${DB_NAME} -f $POST_SQL/green-candles.sql
 
 
 # Load all CSV files into Staging table and then into Atomic table.

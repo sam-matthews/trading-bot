@@ -28,5 +28,7 @@ echo "Creating Tables."
 psql -d ${DBNAME} -f ${TAB}/cre-s_stock.sql
 psql -d ${DBNAME} -f ${TAB}/cre-stock-daily.sql
 psql -d ${DBNAME} -f ${TAB}/cre-stock-weekly.sql
-psql -d ${DBNAME} -f ${TAB}/cre-week-time-series.sql
+psql -d ${DBNAME} -f ${TAB}/s_higer_price_this_week.sql
+psql -d ${DBNAME} -f ${TAB}/c_green_candles.sql
+
 
