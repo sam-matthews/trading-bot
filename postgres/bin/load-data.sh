@@ -16,7 +16,7 @@ psql -d ${DB_NAME} -t -c "TRUNCATE TABLE stock_weekly"
 # Start of the LOOP
 
 
-for STOCK in `ls -1 ${DAT}`
+for STOCK in `ls -1 ${WEEKLY_DAT}`
 do
   # echo the Stock name. Trim the extention off.
   T_STOCK="${STOCK%%.*}"
