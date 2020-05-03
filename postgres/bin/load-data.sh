@@ -5,10 +5,17 @@
 # Sam Matthews
 
 # Parameters
-DAT="$HOME/dev/alphavantage/dat"
+DAT_HOME="${HOME}/dev/alphavantage/dat"
+WEEKLY_DAT="${DAT_HOME}/weekly"
 DB_NAME="trading-bot"
 
+# Truncate stock_daily and stock_weekly
+psql -d ${DB_NAME} -t -c "TRUNCATE TABLE stock_daily"
+psql -d ${DB_NAME} -t -c "TRUNCATE TABLE stock_weekly"
+
 # Start of the LOOP
+
+
 for STOCK in `ls -1 ${DAT}`
 do
   # echo the Stock name. Trim the extention off.
@@ -20,7 +27,7 @@ do
   psql -d ${DB_NAME} -t -c "TRUNCATE TABLE s_stock"
 
   # Load stock into s_stock.
-  psql -d ${DB_NAME} -t -c "\COPY s_stock FROM ${DAT}/${STOCK} DELIMITER ',' CSV HEADER"
+  psql -d ${DB_NAME} -t -c "\COPY s_stock FROM ${WEEKLY_DAT}/${STOCK} DELIMITER ',' CSV HEADER"
 
   # Load stock data into Atomic data with Stock Name.
   psql -d ${DB_NAME} -t -c \
