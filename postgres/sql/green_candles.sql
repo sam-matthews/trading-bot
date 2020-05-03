@@ -1,6 +1,6 @@
 /*
 
-  green-candles.sql
+  green_candles.sql
   Sam Matthews
   2nd May 2020
 
@@ -8,7 +8,9 @@
 
 */
 
-WITH ORDERED AS
+TRUNCATE TABLE c_green_candles;
+
+WITH ordered AS
 (
   SELECT
   *,

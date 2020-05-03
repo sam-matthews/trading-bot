@@ -10,9 +10,6 @@
 
 */
 
---DROP TABLE IF EXISTS ts_week;
---CREATE TABLE IF NOT EXISTS ts_week
-
 DROP TABLE IF EXISTS ts_week;
 CREATE TABLE ts_week ( dd TIMESTAMP, dw INTEGER);
 

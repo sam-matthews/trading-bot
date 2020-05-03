@@ -1,0 +1,25 @@
+/*
+
+  c_prev_week.sql
+  Sam Matthews
+  3rd May 2020
+
+  Script will hold weekly data including close of previous week.
+  This will be used to push onto the additional criteria.
+
+*/
+
+DROP TABLE IF EXISTS c_prev_week;
+CREATE TABLE IF NOT EXISTS c_prev_week
+(
+    stock         CHAR(10),
+    s_date        TIMESTAMP,
+    s_open        NUMERIC,
+    s_high        NUMERIC,
+    s_low         NUMERIC,
+    s_close       NUMERIC,
+    s_vol         BIGINT,
+    s_week_id     INTEGER,
+    s_prev_close  NUMERIC
+);
+

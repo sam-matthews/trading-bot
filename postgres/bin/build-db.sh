@@ -25,10 +25,10 @@ psql -f ${CRE}/cre-db.sql
 
 # Create Tables
 echo "Creating Tables."
-psql -d ${DBNAME} -f ${TAB}/cre-s_stock.sql
-psql -d ${DBNAME} -f ${TAB}/cre-stock-daily.sql
-psql -d ${DBNAME} -f ${TAB}/cre-stock-weekly.sql
-psql -d ${DBNAME} -f ${TAB}/s_higer_price_this_week.sql
-psql -d ${DBNAME} -f ${TAB}/c_green_candles.sql
-
-
+psql -d ${DBNAME} -f ${TAB}/s_stock.tab
+psql -d ${DBNAME} -f ${TAB}/s_prev_week.tab
+psql -d ${DBNAME} -f ${TAB}/stock_daily.tab
+psql -d ${DBNAME} -f ${TAB}/stock_weekly.tab
+psql -d ${DBNAME} -f ${TAB}/c_prev_week.tab
+psql -d ${DBNAME} -f ${TAB}/c_green_candles.tab
+psql -d ${DBNAME} -f ${TAB}/ts_week.tab
