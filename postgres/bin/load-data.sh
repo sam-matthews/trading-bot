@@ -23,7 +23,8 @@ do
   psql -d ${DB_NAME} -t -c "\COPY s_stock FROM ${DAT}/${STOCK} DELIMITER ',' CSV HEADER"
 
   # Load stock data into Atomic data with Stock Name.
-  psql -d ${DB_NAME} -t -c "INSERT INTO stock_daily SELECT '${T_STOCK}', * FROM s_stock"
+  psql -d ${DB_NAME} -t -c \
+  "INSERT INTO stock_daily SELECT '${T_STOCK}', s_date, s_open, s_high, s_low, s_close, s_vol FROM s_stock"
 
 done
 

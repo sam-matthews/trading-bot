@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS stock_daily
     stock   CHAR(10),
     s_date  TIMESTAMP,
     s_open  NUMERIC,
-    s_low   NUMERIC,
-    s_high  NUMERIC,
+    s_high   NUMERIC,
+    s_low  NUMERIC,
     s_close NUMERIC,
     s_vol   BIGINT
 );
