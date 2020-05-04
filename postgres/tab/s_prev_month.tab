@@ -1,0 +1,25 @@
+/*
+
+  s_prev_month.sql
+  Sam Matthews
+  3rd May 2020
+
+  Script will hold monthly data including close of previous month.
+  This will be used to push onto the additional criteria.
+
+*/
+
+DROP TABLE IF EXISTS s_prev_month;
+CREATE TABLE IF NOT EXISTS s_prev_month
+(
+    stock         CHAR(10),
+    s_date        TIMESTAMP,
+    s_open        NUMERIC,
+    s_high        NUMERIC,
+    s_low         NUMERIC,
+    s_close       NUMERIC,
+    s_vol         BIGINT,
+    s_month_id     INTEGER,
+    s_prev_close  NUMERIC
+);
+

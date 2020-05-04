@@ -104,13 +104,66 @@ EOF
 EOF
 }
 
+c_prev_month() {
+  psql -d ${DBNAME} << EOF
+
+      -- INSERT INTO s_prev_week
+      WITH ordered AS
+      (
+        SELECT
+        *,
+        ROW_NUMBER() OVER (PARTITION BY stock ORDER BY s_date DESC) AS week_id
+        FROM stock_weekly
+        WHERE stock = 'AAPL'
+        ORDER BY stock,s_date
+      )
+
+      SELECT
+        ordered.*,
+        LAG(s_close,4) OVER (ORDER BY s_date) prev_mth_close
+      FROM
+        ordered
+      ORDER BY stock, s_date DESC
+      ;
+
+EOF
+}
+
+prev_month_test () {
+  psql -d ${DBNAME} << EOF
+    DROP TABLE s_stock_id;
+    CREATE TABLE s_stock_id AS
+    SELECT
+      *,
+      ROW_NUMBER() OVER (PARTITION BY stock ORDER BY s_date DESC) AS week_id
+      FROM stock_weekly
+      -- WHERE stock = 'AAPL'
+      ORDER BY stock,s_date;
+
+    DROP TABLE s_stock_lag_mth;
+    CREATE TABLE s_stock_lag_mth AS
+    SELECT
+        *,
+        LAG(s_close,2) OVER (ORDER BY stock, s_date) previous_month
+      FROM
+        s_stock_id
+      ;
+
+    DROP TABLE c_prev_month;
+    CREATE TABLE c_prev_month AS
+    SELECT * FROM s_stock_lag_mth WHERE week_id = 1 AND s_close >previous_month;
+
+EOF
+}
+
 summary() {
   psql -d ${DBNAME} << EOF
 
-  SELECT a.*, b.s_prev_close
-  FROM c_green_candles a, c_prev_week b
+  SELECT a.*, b.s_prev_close, c.previous_month
+  FROM c_green_candles a, c_prev_week b, c_prev_month c
   WHERE a.stock=b.stock
-    AND a.s_date=b.s_date;
+    AND a.stock=c.stock
+    AND b.stock=c.stock;
 EOF
 }
 
@@ -121,5 +174,8 @@ EOF
 # c_green_candle
 # c_week_on_week_price_increase
 # c_prev_week
+# c_prev_month
+prev_month_test
+
 summary
 

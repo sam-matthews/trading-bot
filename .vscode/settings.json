@@ -1,0 +1,10 @@
+{
+  "pgsql.connections": [
+    {
+      "server": "{{127.0.0.1}}",
+      "database": "{{trading-bot}}",
+      "user": "{{sam}}",
+      "password": "{{January@2020}}"
+    }
+  ]
+}
