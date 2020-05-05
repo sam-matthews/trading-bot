@@ -9,7 +9,7 @@
 
 # Parameters
 
-APP_HOME="$HOME/dev/trading-bot"
+APP_HOME="$HOME/dev/projects/trading-bot"
 POS_HOME="${APP_HOME}/postgres"
 CRE="${POS_HOME}/cre"
 TAB="${POS_HOME}/tab"
@@ -37,4 +37,8 @@ psql -d ${DBNAME} -f ${TAB}/a_sma_stocks_to_buy.tab
 psql -d ${DBNAME} -f ${TAB}/c_prev_week.tab
 psql -d ${DBNAME} -f ${TAB}/c_green_candles.tab
 psql -d ${DBNAME} -f ${TAB}/ts_week.tab
+
+# Indexes
+psql -d ${DBNAME} -f ${IDX}/trading-bot.idx
+
 

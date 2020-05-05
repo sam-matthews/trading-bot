@@ -5,12 +5,12 @@
 # Sam Matthews
 
 # Parameters
-APP_HOME="${HOME}/dev/trading-bot"
+APP_HOME="${HOME}/dev/projects/trading-bot"
 POST_HOME="${APP_HOME}/postgres"
 POST_SQL="${POST_HOME}/sql"
 POST_BIN="${POST_HOME}/bin"
 
-DAT_HOME="${HOME}/dev/alphavantage/dat"
+DAT_HOME="${HOME}/dev/projects/USStocks/dat"
 WEEKLY_DAT="${DAT_HOME}/weekly"
 WEEKLY_SMA6_DAT="${DAT_HOME}/weekly-sma-6"
 WEEKLY_SMA12_DAT="${DAT_HOME}/weekly-sma-12"
@@ -49,7 +49,7 @@ load-data() {
 
   STAGING_TABLE="s_stock"
   # TRUNCATE ATOMIC TABLE because we will do a FULL LOAD.
-  psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${ATOMIC_TABLE}"
+  psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${ATOMIC_TABLE}" > /dev/null
 
   for STOCK in `ls -1 ${DAT_LOCATION}`
   do
@@ -58,13 +58,13 @@ load-data() {
     T_STOCK="${STOCK%%.*}"
 
     # Truncate s_stock
-    psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${STAGING_TABLE}"
+    psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${STAGING_TABLE}" > /dev/null
 
     # Load stock into s_stock.
-    psql -d ${DBNAME} -t -c "\COPY ${STAGING_TABLE} FROM ${DAT_LOCATION}/${STOCK} DELIMITER ',' CSV HEADER"
+    psql -d ${DBNAME} -t -c "\COPY ${STAGING_TABLE} FROM ${DAT_LOCATION}/${STOCK} DELIMITER ',' CSV HEADER" > /dev/null
 
     # Load stock data into Atomic data with Stock Name.
-    psql -d ${DBNAME} -t -c "INSERT INTO ${ATOMIC_TABLE} SELECT '${T_STOCK}', s_date, s_open, s_high, s_low, s_close, s_vol FROM s_stock"
+    psql -d ${DBNAME} -t -c "INSERT INTO ${ATOMIC_TABLE} SELECT '${T_STOCK}', s_date, s_open, s_high, s_low, s_close, s_vol FROM s_stock" > /dev/null
 
   done
 
@@ -107,13 +107,13 @@ load-data-sma() {
 
     echo "Processing ${T_STOCK}"
     # Truncate s_stock
-    psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${STAGING_TABLE}"
+    psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${STAGING_TABLE}" > /dev/null
 
     # Load stock into s_stock.
-    psql -d ${DBNAME} -t -c "\COPY ${STAGING_TABLE} FROM ${DAT_LOCATION}/${STOCK} DELIMITER ',' CSV HEADER"
+    psql -d ${DBNAME} -t -c "\COPY ${STAGING_TABLE} FROM ${DAT_LOCATION}/${STOCK} DELIMITER ',' CSV HEADER" > /dev/null
 
     # Load stock data into Atomic data with Stock Name.
-    psql -d ${DBNAME} -t -c "INSERT INTO ${ATOMIC_TABLE} SELECT '${T_STOCK}', s_date, s_sma FROM s_sma"
+    psql -d ${DBNAME} -t -c "INSERT INTO ${ATOMIC_TABLE} SELECT '${T_STOCK}', s_date, s_sma FROM s_sma" > /dev/null
 
   done
 
@@ -125,23 +125,4 @@ load-data-sma daily_sma12
 
 # Load data into intermediate table.
 psql -d ${DBNAME} -f ${POST_SQL}/load_sma.sql
-
-# Load stocks which have been chosed based on my criteria.
-
-
-# Generate list of stocks where they had a green candle in the last week.
-echo "Generating list of Stocks which have Green Candles"
-
-
-# psql -d ${DBNAME} -f $POST_SQL/green_candles.sql
-
-# Generate list of stocks which have grown from the previous week.
-# This means the close from this week is higher than the close from the previous week.
-
-# echo "Generating list of stocks which have grown in the past week"
-# ${POST_BIN}/c_prev_week.sh
-
-
-
-
 

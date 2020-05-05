@@ -21,6 +21,7 @@ CUrrnetly this approach generates a reasonably low number of stocks. Potentially
 
 
 */
+\echo "Loading data into intermediate table."
 TRUNCATE TABLE i_sma_6_12;
 
 INSERT INTO i_sma_6_12
@@ -46,6 +47,8 @@ INSERT INTO i_sma_6_12
 
 -- Load into atomic table.
 -- Select stocks for the latest date which fall between the  12 and 6 SMA.
+
+\echo  Load data into atomic table.
 
 TRUNCATE TABLE a_sma_stocks_to_buy;
 
