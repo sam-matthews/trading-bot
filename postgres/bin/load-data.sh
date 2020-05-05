@@ -64,7 +64,7 @@ load-data() {
     psql -d ${DBNAME} -t -c "\COPY ${STAGING_TABLE} FROM ${DAT_LOCATION}/${STOCK} DELIMITER ',' CSV HEADER"
 
     # Load stock data into Atomic data with Stock Name.
-    psql -d ${DBNAME} -t -c "INSERT INTO ${ATOMIC_TABLE} SELECT '${T_STOCK}', a_date, a_open, s_high, s_low, s_close, s_vol FROM s_stock"
+    psql -d ${DBNAME} -t -c "INSERT INTO ${ATOMIC_TABLE} SELECT '${T_STOCK}', s_date, s_open, s_high, s_low, s_close, s_vol FROM s_stock"
 
   done
 
@@ -119,21 +119,27 @@ load-data-sma() {
 
 }
 
-# load-data daily
-# load-data weekly
+load-data daily
 load-data-sma daily_sma6
 load-data-sma daily_sma12
+
+# Load data into intermediate table.
+psql -d ${DBNAME} -f ${POST_SQL}/load_sma.sql
+
+# Load stocks which have been chosed based on my criteria.
+
 
 # Generate list of stocks where they had a green candle in the last week.
 echo "Generating list of Stocks which have Green Candles"
 
-psql -d ${DBNAME} -f $POST_SQL/green_candles.sql
+
+# psql -d ${DBNAME} -f $POST_SQL/green_candles.sql
 
 # Generate list of stocks which have grown from the previous week.
 # This means the close from this week is higher than the close from the previous week.
 
-echo "Generating list of stocks which have grown in the past week"
-${POST_BIN}/c_prev_week.sh
+# echo "Generating list of stocks which have grown in the past week"
+# ${POST_BIN}/c_prev_week.sh
 
 
 

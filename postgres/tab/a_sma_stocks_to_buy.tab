@@ -1,0 +1,25 @@
+/*
+
+  a_sma_stocks_to_buy.tab
+  Sam Matthews
+  4th May 2020
+
+  Atomic Table.
+  Holds what stocks should be purchased or are good candidates.
+
+*/
+
+DROP TABLE a_sma_stocks_to_buy;
+CREATE TABLE a_sma_stocks_to_buy
+(
+    i_stock   CHAR(10),
+    i_date    TIMESTAMP,
+    i_open    NUMERIC,
+    i_high    NUMERIC,
+    i_low     NUMERIC,
+    i_close   NUMERIC,
+    i_vol     BIGINT,
+    i_sma_6   NUMERIC,
+    i_sma_12  NUMERIC
+);
+

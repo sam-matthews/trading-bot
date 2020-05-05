@@ -1,0 +1,24 @@
+/*
+
+  s_prev_week.sql
+  Sam Matthews
+  3rd May 2020
+
+  Intermiediate table to hold all SMA data including OHLC data. From this table calculations on funds can be made.
+
+*/
+
+DROP TABLE i_sma_6_12;
+CREATE TABLE i_sma_6_12
+(
+    i_stock   CHAR(10),
+    i_date    TIMESTAMP,
+    i_open    NUMERIC,
+    i_high    NUMERIC,
+    i_low     NUMERIC,
+    i_close   NUMERIC,
+    i_vol     BIGINT,
+    i_sma_6   NUMERIC,
+    i_sma_12  NUMERIC
+);
+

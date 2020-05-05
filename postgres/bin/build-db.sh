@@ -32,6 +32,9 @@ psql -d ${DBNAME} -f ${TAB}/stock_daily.tab
 psql -d ${DBNAME} -f ${TAB}/stock_weekly.tab
 psql -d ${DBNAME} -f ${TAB}/a_sma_daily_6.tab
 psql -d ${DBNAME} -f ${TAB}/a_sma_daily_12.tab
+psql -d ${DBNAME} -f ${TAB}/i_sma_6_12.tab
+psql -d ${DBNAME} -f ${TAB}/a_sma_stocks_to_buy.tab
 psql -d ${DBNAME} -f ${TAB}/c_prev_week.tab
 psql -d ${DBNAME} -f ${TAB}/c_green_candles.tab
 psql -d ${DBNAME} -f ${TAB}/ts_week.tab
+
