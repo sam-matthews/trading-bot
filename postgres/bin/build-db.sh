@@ -41,4 +41,8 @@ psql -d ${DBNAME} -f ${TAB}/ts_week.tab
 # Indexes
 psql -d ${DBNAME} -f ${IDX}/trading-bot.idx
 
+# Functions
+psql -d ${DBNAME} -f ${FUN}/i_sma.fun.fun
+
+
 

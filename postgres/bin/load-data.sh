@@ -4,13 +4,17 @@
 # 3rd May 2020
 # Sam Matthews
 
+# App
+
+DAT_NAME=alphavantage
+
 # Parameters
 APP_HOME="${HOME}/dev/projects/trading-bot"
 POST_HOME="${APP_HOME}/postgres"
 POST_SQL="${POST_HOME}/sql"
 POST_BIN="${POST_HOME}/bin"
 
-DAT_HOME="${HOME}/dev/projects/USStocks/dat"
+DAT_HOME="${HOME}/dev/projects/${DAT_NAME}/dat"
 WEEKLY_DAT="${DAT_HOME}/weekly"
 WEEKLY_SMA6_DAT="${DAT_HOME}/weekly-sma-6"
 WEEKLY_SMA12_DAT="${DAT_HOME}/weekly-sma-12"
@@ -123,6 +127,11 @@ load-data daily
 load-data-sma daily_sma6
 load-data-sma daily_sma12
 
-# Load data into intermediate table.
+# Load SMA data into intemediate table
 psql -d ${DBNAME} -f ${POST_SQL}/load_sma.sql
+
+# Load SMA data using LAG function. So we can make some really good decisions.
+psql -d ${DBNAME} -tc "SELECT FROM i_sma()" -c "\q"
+
+
 
