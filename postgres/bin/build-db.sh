@@ -45,3 +45,4 @@ psql -d ${DBNAME} -f ${IDX}/trading-bot.idx
 
 # Functions
 psql -d ${DBNAME} -f ${FUN}/i_sma.fun
+psql -d ${DBNAME} -f ${FUN}/a_sma.fun
