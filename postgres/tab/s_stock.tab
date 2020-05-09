@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS s_stock
 (
     s_date  TIMESTAMP,
     s_open  NUMERIC,
-    s_low   NUMERIC,
-    s_high  NUMERIC,
+    s_high   NUMERIC,
+    s_low  NUMERIC,
     s_close NUMERIC,
-    s_vol   INTEGER
+    s_vol   BIGINT
 );
