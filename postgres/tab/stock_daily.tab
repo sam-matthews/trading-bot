@@ -8,8 +8,8 @@
     This should be the largest CORE data.
 */
 
-DROP TABLE IF EXISTS stock_daily;
-CREATE TABLE IF NOT EXISTS stock_daily
+DROP TABLE stock_daily;
+CREATE TABLE stock_daily
 (
     stock   CHAR(10),
     s_date  TIMESTAMP,

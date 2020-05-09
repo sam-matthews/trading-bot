@@ -13,5 +13,5 @@ CREATE TABLE a_sma_daily_12
 (
     stock   CHAR(10),
     a_date  TIMESTAMP,
-    a_sma  NUMERIC
+    a_sma   NUMERIC
 );

@@ -55,9 +55,9 @@ TRUNCATE TABLE a_sma_stocks_to_buy;
 INSERT INTO a_sma_stocks_to_buy
 SELECT * FROM i_sma_6_12
 WHERE 1=1
-  AND i_sma_6 > i_sma_12
+  AND i_sma6 > i_sma12
   AND i_date  = (SELECT max(i_date) FROM i_sma_6_12)
-  AND i_open  BETWEEN (i_sma_6 * 1.05) AND (i_sma_6 * .95)
+  AND i_open  BETWEEN (i_sma6 * 1.05) AND (i_sma6 * .95)
   -- AND i_close between i_sma_12 AND i_sma_6
 ;
 

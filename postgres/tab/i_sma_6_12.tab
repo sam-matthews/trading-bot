@@ -18,7 +18,7 @@ CREATE TABLE i_sma_6_12
     i_low     NUMERIC,
     i_close   NUMERIC,
     i_vol     BIGINT,
-    i_sma_6   NUMERIC,
-    i_sma_12  NUMERIC
+    i_sma6   NUMERIC,
+    i_sma12  NUMERIC
 );
 

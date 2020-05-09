@@ -6,7 +6,7 @@
 
 # App
 
-DAT_NAME=alphavantage
+DAT_NAME="alphavantage"
 
 # Parameters
 APP_HOME="${HOME}/dev/projects/trading-bot"
@@ -24,7 +24,15 @@ DAILY_SMA12_DAT="${DAT_HOME}/SMA12"
 
 DBNAME="trading-bot"
 
-# Start of the LOOP
+check_directories() {
+
+  DIR_NAME=$1
+
+  if [ ! -d "${DIR_NAME}" ]; then
+    mkdir -p ${DIR_NAME}
+    echo "Create directory: ${DIR_NAME}"
+  fi
+}
 
 load-data() {
 
@@ -52,6 +60,9 @@ load-data() {
   esac
 
   STAGING_TABLE="s_stock"
+
+  check_directories ${DAT_LOCATION}
+
   # TRUNCATE ATOMIC TABLE because we will do a FULL LOAD.
   psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${ATOMIC_TABLE}" > /dev/null
 
@@ -100,6 +111,9 @@ load-data-sma() {
   esac
 
   STAGING_TABLE="s_sma"
+
+  check_directories ${DAT_LOCATION}
+
   # TRUNCATE ATOMIC TABLE because we will do a FULL LOAD.
   psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${ATOMIC_TABLE}"
 
@@ -128,9 +142,11 @@ load-data-sma daily_sma6
 load-data-sma daily_sma12
 
 # Load SMA data into intemediate table
+echo "Running load_sma.sql"
 psql -d ${DBNAME} -f ${POST_SQL}/load_sma.sql
 
 # Load SMA data using LAG function. So we can make some really good decisions.
+echo "Running i_sma function."
 psql -d ${DBNAME} -tc "SELECT FROM i_sma()" -c "\q"
 
 

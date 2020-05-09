@@ -1,0 +1,36 @@
+/*
+
+  i_sma_temp_2.tab
+  Sam Matthews
+  8th May 2020
+
+  Intermiediate table to hold all SMA data including OHLC data, including the previous 3 days.
+
+*/
+
+DROP TABLE i_sma_temp_2;
+
+CREATE TABLE i_sma_temp_2
+(
+  i_stock     CHAR(10),
+  i_date      TIMESTAMP,
+  i_rank      INTEGER,
+  i_open      NUMERIC,
+  i_close     NUMERIC,
+  i_sma_6     NUMERIC,
+  i_sma_12    NUMERIC,
+  i_open_1    NUMERIC,
+  i_open_2    NUMERIC,
+  i_open_3    NUMERIC,
+  i_close_1   NUMERIC,
+  i_close_2   NUMERIC,
+  i_close_3   NUMERIC,
+  i_sma6_1    NUMERIC,
+  i_sma6_2    NUMERIC,
+  i_sma6_3    NUMERIC,
+  i_sma12_1   NUMERIC,
+  i_sma12_2   NUMERIC,
+  i_sma12_3   NUMERIC
+);
+
+
