@@ -8,8 +8,8 @@
 
 */
 
-DROP TABLE IF EXISTS s_sma;
-CREATE TABLE IF NOT EXISTS s_sma
+DROP TABLE s_sma;
+CREATE TABLE s_sma
 (
     s_date  TIMESTAMP,
     s_sma  NUMERIC

@@ -33,6 +33,8 @@ psql -d ${DBNAME} -f ${TAB}/stock_weekly.tab
 psql -d ${DBNAME} -f ${TAB}/a_sma_daily_6.tab
 psql -d ${DBNAME} -f ${TAB}/a_sma_daily_12.tab
 psql -d ${DBNAME} -f ${TAB}/i_sma_6_12.tab
+psql -d ${DBNAME} -f ${TAB}/i_sma_temp_1.tab
+psql -d ${DBNAME} -f ${TAB}/i_sma_temp_2.tab
 psql -d ${DBNAME} -f ${TAB}/a_sma_stocks_to_buy.tab
 psql -d ${DBNAME} -f ${TAB}/c_prev_week.tab
 psql -d ${DBNAME} -f ${TAB}/c_green_candles.tab
@@ -42,7 +44,5 @@ psql -d ${DBNAME} -f ${TAB}/ts_week.tab
 psql -d ${DBNAME} -f ${IDX}/trading-bot.idx
 
 # Functions
-psql -d ${DBNAME} -f ${FUN}/i_sma.fun.fun
-
-
-
+psql -d ${DBNAME} -f ${FUN}/i_sma.fun
+psql -d ${DBNAME} -f ${FUN}/a_sma.fun

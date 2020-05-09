@@ -9,9 +9,9 @@
 */
 
 DROP TABLE a_sma_daily_6;
-CREATE TABLE IF NOT EXISTS a_sma_daily_6
+CREATE TABLE a_sma_daily_6
 (
     stock   CHAR(10),
     a_date  TIMESTAMP,
-    a_sma  NUMERIC
+    a_sma   NUMERIC
 );
