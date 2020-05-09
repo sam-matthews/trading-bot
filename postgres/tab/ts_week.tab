@@ -10,7 +10,7 @@
 
 */
 
-DROP TABLE IF EXISTS ts_week;
+DROP TABLE ts_week;
 CREATE TABLE ts_week ( dd TIMESTAMP, dw INTEGER);
 
 INSERT INTO ts_week

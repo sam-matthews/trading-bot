@@ -9,8 +9,8 @@
 
 */
 
-DROP TABLE IF EXISTS c_prev_week;
-CREATE TABLE IF NOT EXISTS c_prev_week
+DROP TABLE c_prev_week;
+CREATE TABLE c_prev_week
 (
     stock         CHAR(10),
     s_date        TIMESTAMP,
