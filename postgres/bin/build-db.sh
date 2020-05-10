@@ -7,6 +7,10 @@
 # Build database components from scratch. The idea is that it is rerunnable. Including it's components.
 # Scripts should be rerunnable, although database will probably be dropped.
 
+# History
+
+# SMM 0.1.1 20200510 Remove s_sma staging table from script.
+
 # Parameters
 
 APP_HOME="$HOME/dev/projects/trading-bot"
@@ -26,7 +30,6 @@ psql -f ${CRE}/cre-db.sql
 # Create Tables
 echo "Creating Tables."
 psql -d ${DBNAME} -f ${TAB}/s_stock.tab
-psql -d ${DBNAME} -f ${TAB}/s_sma.tab
 psql -d ${DBNAME} -f ${TAB}/s_prev_week.tab
 psql -d ${DBNAME} -f ${TAB}/stock_daily.tab
 psql -d ${DBNAME} -f ${TAB}/stock_weekly.tab

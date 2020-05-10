@@ -4,6 +4,9 @@
 # 3rd May 2020
 # Sam Matthews
 
+# History
+# 20200510 SMM 0.1.1 Remove function to load SMA data from alphavantage.
+
 # App
 
 DAT_NAME="alphavantage"
