@@ -1,0 +1,17 @@
+/*
+
+    a_sma_6.tab
+    11th May 2020
+    Sam Matthews
+
+    Create a table which will hold all SMA data with a period of 6 days.
+
+*/
+
+DROP TABLE a_sma_6;
+CREATE TABLE a_sma_6
+(
+    stock   CHAR(10),
+    a_date  TIMESTAMP,
+    a_sma   NUMERIC
+);
