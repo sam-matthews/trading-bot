@@ -29,16 +29,26 @@ psql -f ${CRE}/cre-db.sql
 
 # Create Tables
 echo "Creating Tables."
+echo " - Staging tables."
+
 psql -d ${DBNAME} -f ${TAB}/s_stock.tab
 psql -d ${DBNAME} -f ${TAB}/s_prev_week.tab
-psql -d ${DBNAME} -f ${TAB}/stock_daily.tab
-psql -d ${DBNAME} -f ${TAB}/stock_weekly.tab
-psql -d ${DBNAME} -f ${TAB}/a_sma_daily_6.tab
-psql -d ${DBNAME} -f ${TAB}/a_sma_daily_12.tab
+
+echo " - Intermediate Tables."
+
 psql -d ${DBNAME} -f ${TAB}/i_sma_6_12.tab
 psql -d ${DBNAME} -f ${TAB}/i_sma_temp_1.tab
 psql -d ${DBNAME} -f ${TAB}/i_sma_temp_2.tab
-psql -d ${DBNAME} -f ${TAB}/a_sma_stocks_to_buy.tab
+psql -d ${DBNAME} -f ${TAB}/a_sma_6.tab
+psql -d ${DBNAME} -f ${TAB}/a_sma_12.tab
+
+echo " - Atomic tables"
+
+psql -d ${DBNAME} -f ${TAB}/stock_daily.tab
+psql -d ${DBNAME} -f ${TAB}/stock_weekly.tab
+psql -d ${DBNAME} -f ${TAB}/final_daily_sma.tab
+
+echo " - Tables to be decomissioned."
 psql -d ${DBNAME} -f ${TAB}/c_prev_week.tab
 psql -d ${DBNAME} -f ${TAB}/c_green_candles.tab
 psql -d ${DBNAME} -f ${TAB}/ts_week.tab
@@ -49,3 +59,4 @@ psql -d ${DBNAME} -f ${IDX}/trading-bot.idx
 # Functions
 psql -d ${DBNAME} -f ${FUN}/i_sma.fun
 psql -d ${DBNAME} -f ${FUN}/a_sma.fun
+psql -d ${DBNAME} -f ${FUN}/final_daily_sma.fun

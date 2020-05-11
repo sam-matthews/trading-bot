@@ -1,0 +1,37 @@
+/*
+
+  final_daily_sma.tab
+  Sam Matthews
+  11th May 2020
+
+  Final table to hold all data which selects will be made.
+  - Decision is based on when SMA 6 crosses SMA 12.
+
+*/
+
+DROP TABLE final_daily_sma;
+
+CREATE TABLE final_daily_sma
+(
+  f_stock     CHAR(10),
+  f_date      TIMESTAMP,
+  f_rank      INTEGER,
+  f_open      NUMERIC,
+  f_close     NUMERIC,
+  f_sma_6     NUMERIC,
+  f_sma_12    NUMERIC,
+  f_open_1    NUMERIC,
+  f_open_2    NUMERIC,
+  f_open_3    NUMERIC,
+  f_close_1   NUMERIC,
+  f_close_2   NUMERIC,
+  f_close_3   NUMERIC,
+  f_sma6_1    NUMERIC,
+  f_sma6_2    NUMERIC,
+  f_sma6_3    NUMERIC,
+  f_sma12_1   NUMERIC,
+  f_sma12_2   NUMERIC,
+  f_sma12_3   NUMERIC
+);
+
+

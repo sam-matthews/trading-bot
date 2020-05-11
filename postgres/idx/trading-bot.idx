@@ -10,8 +10,8 @@ DROP INDEX stock_daily_idx1;
 CREATE INDEX stock_daily_idx1 ON stock_daily (stock,s_date);
 
 DROP INDEX a_sma_daily_6_idx;
-CREATE INDEX a_sma_daily_6_idx1 ON a_sma_daily_6 (stock,a_date);
+CREATE INDEX a_sma_6_idx1 ON a_sma_6 (stock,a_date);
 
 DROP INDEX a_sma_daily_12_idx1;
-CREATE INDEX a_sma_daily_12_idx1 ON a_sma_daily_12 (stock,a_date);
+CREATE INDEX a_sma_12_idx1 ON a_sma_12 (stock,a_date);
 

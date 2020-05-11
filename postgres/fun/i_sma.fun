@@ -7,7 +7,9 @@ DECLARE
 BEGIN
 
   RAISE NOTICE 'Running data into i_sma_temp_1';
+
   TRUNCATE TABLE i_sma_temp_1;
+
   INSERT INTO i_sma_temp_1
   SELECT
     i_stock,
@@ -19,6 +21,8 @@ BEGIN
     i_sma12
   FROM
     i_sma_6_12;
+
+  RAISE NOTICE 'Running data into i_sma_temp_2';
 
   TRUNCATE TABLE i_sma_temp_2;
 
