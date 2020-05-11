@@ -47,6 +47,7 @@ echo " - Atomic tables"
 psql -d ${DBNAME} -f ${TAB}/stock_daily.tab
 psql -d ${DBNAME} -f ${TAB}/stock_weekly.tab
 psql -d ${DBNAME} -f ${TAB}/final_daily_sma.tab
+psql -d ${DBNAME} -f ${TAB}/final_weekly_sma.tab
 
 echo " - Tables to be decomissioned."
 psql -d ${DBNAME} -f ${TAB}/c_prev_week.tab
@@ -60,3 +61,4 @@ psql -d ${DBNAME} -f ${IDX}/trading-bot.idx
 psql -d ${DBNAME} -f ${FUN}/i_sma.fun
 psql -d ${DBNAME} -f ${FUN}/a_sma.fun
 psql -d ${DBNAME} -f ${FUN}/final_daily_sma.fun
+psql -d ${DBNAME} -f ${FUN}/final_weekly_sma.fun

@@ -51,7 +51,7 @@ load-data() {
       ;;
 
     weekly)
-      DAT_LOCATION=${DAILY_DAT}
+      DAT_LOCATION=${WEEKLY_DAT}
       ATOMIC_TABLE="stock_daily"
       ;;
 
@@ -74,6 +74,7 @@ load-data() {
 
     # echo the Stock name. Trim the extention off.
     T_STOCK="${STOCK%%.*}"
+    echo "Loading: ${T_STOCK}"
 
     # Truncate s_stock
     psql -d ${DBNAME} -t -c "TRUNCATE TABLE ${STAGING_TABLE}" > /dev/null
@@ -103,9 +104,10 @@ load-data() {
     # Load daily data into final tables to display final stocks to choose from.
     psql -d ${DBNAME} -tc "SELECT FROM final_daily_sma()" -c "\q"
   else
-    psql -d ${DBNAME} -tc "SELECT FROM final_daily_sma()" -c "\q"
+    psql -d ${DBNAME} -tc "SELECT FROM final_weekly_sma()" -c "\q"
   fi
 
 }
 
 load-data daily
+load-data weekly
