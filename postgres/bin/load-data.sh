@@ -88,26 +88,10 @@ load-data() {
 
   done
 
-  # Calculate SMA data
-  echo "Loading into a_sma_6 and a_sma_12 - generating SMA data."
-  psql -d ${DBNAME} -tc "SELECT FROM a_sma()" -c "\q"
-
-  # Load SMA data into intemediate table
-  echo "Loading i_sma_6_12 - Combining OHLC and SMA data."
-  psql -d ${DBNAME} -f ${POST_SQL}/load_sma.sql
-
-  # Load SMA data using LAG function. So we can make some really good decisions.
-  echo "Load into i_sma_temp_1 and i_sma_temp_2 - Aggregate last three days."
-  psql -d ${DBNAME} -tc "SELECT FROM i_sma()" -c "\q"
-
-  if [ ${DAT_TYPE} = "daily" ]; then
-    # Load daily data into final tables to display final stocks to choose from.
-    psql -d ${DBNAME} -tc "SELECT FROM final_daily_sma()" -c "\q"
-  else
-    psql -d ${DBNAME} -tc "SELECT FROM final_weekly_sma()" -c "\q"
-  fi
+  # Generate growth data
+  psql -d ${DBNAME} -t -c "SELECT FROM one_day_growth()" > /dev/null
+  psql -d ${DBNAME} -t -c "SELECT FROM five_day_growth()" > /dev/null
 
 }
 
 load-data daily
-load-data weekly

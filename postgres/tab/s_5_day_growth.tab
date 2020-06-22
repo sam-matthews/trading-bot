@@ -1,0 +1,20 @@
+/*
+
+    s_5_day_growth.sql
+    18th June 2020
+    Sam Matthews
+
+    Script will create a table which will hold five day growth data across all stocks.
+
+*/
+
+DROP TABLE s_5_day_growth;
+CREATE TABLE s_5_day_growth
+(
+    stock           CHAR(10),
+    s_date          TIMESTAMP,
+    s_close         NUMERIC,
+    s_close_start   NUMERIC,
+    s_growth        NUMERIC
+);
+
